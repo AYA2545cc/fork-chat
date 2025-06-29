@@ -47,7 +47,6 @@ The entire application is containerized using Docker Compose, simplifying the se
 ├── docs/
 │   ├── architecture.md
 │   ├── api_design.md
-│   ├── database.md
 │   ├── development_guide.md
 │   └── requirements.md
 ├── backend/                  # FastAPI Application
@@ -66,6 +65,74 @@ The entire application is containerized using Docker Compose, simplifying the se
 
 ## 3. Coding Style & Conventions
 
-*   **Python (Backend)**: Follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) standards. Use a linter like `ruff` or `flake8` to enforce consistency.
-*   **TypeScript/React (Frontend)**: Adhere to standard TypeScript and React best practices. Use a formatter like `Prettier`.
+To maintain code quality and consistency across the project, the following linters and formatters are used.
+
+### 3.1. Python (Backend)
+
+*   **Tool**: `ruff`
+*   **Purpose**: Enforces PEP 8 compliant coding style and detects common errors and potential issues. It also covers import sorting (`isort`) and naming conventions (`pep8-naming`).
+*   **Configuration**: Configured in `pyproject.toml`. Key settings are as follows:
+    ```toml
+    [tool.ruff]
+    line-length = 88
+    target-version = "py310"
+    select = ["E", "F", "W", "I", "N", "D"] # Errors, Flake8, Warnings, Isort, Naming, Docstrings
+    ignore = ["D100", "D104", "D105", "D107"] # Missing docstrings for modules, packages, functions, __init__
+    ```
+    *   `line-length`: Sets the maximum line length to 88 characters.
+    *   `target-version`: Targets Python 3.10.
+    *   `select`: Specifies the rule sets to enable.
+        *   `E`: pycodestyle errors
+        *   `F`: Pyflakes errors
+        *   `W`: pycodestyle warnings
+        *   `I`: isort (import sorting)
+        *   `N`: pep8-naming (naming conventions)
+        *   `D`: pydocstyle (Docstring)
+    *   `ignore`: Ignores specific Docstring-related rules (`D100`, `D104`, `D105`, `D107`).
+*   **Usage**:
+    *   Check only: `ruff check .`
+    *   Auto-fix: `ruff check . --fix`
+    *   Format: `ruff format .`
+
+### 3.2. TypeScript/React (Frontend)
+
+*   **Tools**: `ESLint` (Linter), `Prettier` (Formatter)
+*   **Purpose**: Adheres to TypeScript and React best practices, ensuring code quality and consistency. Prettier automatically formats code, reducing style-related discussions.
+*   **Configuration**:
+    *   **ESLint**: Based on `eslint-config-next` as configured in `frontend/package.json`.
+    *   **Prettier**: Uses default settings, with `eslint-config-prettier` applied to avoid conflicts with ESLint.
+*   **Usage**:
+    *   Linter check: `npm run lint` (run inside `frontend` directory)
+    *   Formatter run: `npm run format` (run inside `frontend` directory)
+
+### 3.3. IDE/Editor Integration (VS Code Recommended Settings)
+
+To enhance the development experience, the following VS Code settings are recommended:
+
+1.  **Install Extensions**:
+    *   `Python` (Microsoft)
+    *   `Ruff` (charliermarsh)
+    *   `ESLint` (Microsoft)
+    *   `Prettier - Code formatter` (Prettier)
+2.  **Add Settings (settings.json)**:
+    ```json
+    {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+      },
+      "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ]
+    }
+    ```
+    *   `editor.formatOnSave`: Automatically formats the file on save.
+    *   `editor.defaultFormatter`: Sets Prettier as the default formatter.
+    *   `[python]`: For Python files, sets Ruff as the default formatter.
+    *   `eslint.validate`: Specifies the language modes ESLint should validate.
+
 *   **Naming**: Use clear and descriptive names for variables, functions, and classes.

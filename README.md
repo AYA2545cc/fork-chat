@@ -40,3 +40,13 @@ This application is managed using Docker Compose. To run it on your local machin
         ```bash
         docker-compose down
         ```
+
+## 4. Documentation
+
+The `docs/` directory contains detailed documentation for the project:
+
+*   **`architecture.md`**: Overview of the system architecture, technology stack, non-functional requirements, and database design.
+*   **`api_design.md`**: Specifications for the REST and WebSocket APIs.
+*   **`coding_guide.md`**: Coding conventions and development process for AI agents.
+*   **`development_guide.md`**: Instructions for setting up the development environment and key development practices.
+*   **`requirements.md`**: Functional and non-functional requirements of the chat application.

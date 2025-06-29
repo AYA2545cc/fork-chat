@@ -30,7 +30,37 @@ The application runs entirely within Docker containers on the user's local machi
 +-------------------------------------------------------------+
 ```
 
-## 2. Technology Stack
+## 4. Database Design (SQLite)
+
+### 4.1. `conversations` Table
+| Column Name | Data Type | Description |
+| :--- | :--- | :--- |
+| `id` | INTEGER | Primary Key (Auto-increment) |
+| `title` | TEXT | Conversation title |
+| `created_at`| TIMESTAMP | Creation timestamp |
+| `updated_at`| TIMESTAMP | Last updated timestamp |
+
+### 4.2. `messages` Table
+| Column Name | Data Type | Description |
+| :--- | :--- | :--- |
+| `id` | INTEGER | Primary Key (Auto-increment) |
+| `conversation_id`| INTEGER | Foreign key to `conversations.id` |
+| `parent_message_id`| INTEGER | ID of the parent message (`messages.id`). Core of the tree structure. |
+| `role` | TEXT | Speaker ("user" or "model") |
+| `content` | TEXT | Message body |
+| `node_summary`| TEXT | Summary text for overview (tree view) |
+| `created_at`| TIMESTAMP | Creation timestamp |
+
+### 4.3. `attached_files` Table
+| Column Name | Data Type | Description |
+| :--- | :--- | :--- |
+| `id` | INTEGER | Primary Key (Auto-increment) |
+| `message_id` | INTEGER | Foreign key to `messages.id` |
+| `file_name` | TEXT | Original file name |
+| `gemini_file_uri` | TEXT | Reference URI from Google File API |
+| `created_at`| TIMESTAMP | Creation timestamp |
+
+## 5. Technology Stack
 
 | Category | Technology/Library | Role |
 | :--- | :--- | :--- |
@@ -44,20 +74,20 @@ The application runs entirely within Docker containers on the user's local machi
 | **Multimodal** | Google AI Python SDK (File API) | File uploads and analysis |
 | **Execution Environment** | Docker Compose | Container orchestration |
 
-## 3. Non-Functional Requirements
+## 6. Non-Functional Requirements
 
-### 3.1. UI/UX Design
+### 6.1. UI/UX Design
 *   Adopts a clean, modern design inspired by Google's official Gemini web application.
 *   Employs a responsive design for optimal use on both desktop and mobile devices.
 
-### 3.2. Performance
+### 6.2. Performance
 *   AI responses are streamed via WebSocket to reduce perceived user wait times.
 *   The user interface must be fast and responsive.
 
-### 3.3. Execution Environment
+### 6.3. Execution Environment
 *   The entire application stack is managed by Docker Compose for local execution.
 *   Remote access is intended to be handled via VPN tunneling services like `Tailscale`, not requiring cloud deployment.
 
-### 3.4. Data Management
+### 6.4. Data Management
 *   All application data (conversations, branches, files) is stored in a single SQLite database file.
 *   This database file is persisted on the host machine using a Docker volume mount to the `data/` directory.

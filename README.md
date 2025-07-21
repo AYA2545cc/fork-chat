@@ -44,7 +44,30 @@ This application is managed using Docker Compose. To run it on your local machin
         docker-compose down
         ```
 
-## 4. Documentation
+## 4. Development Process
+
+This project follows a **Git-based small step development approach**:
+
+- **Feature Branches**: Each task is implemented in a separate feature branch
+- **Small Increments**: Tasks are broken down into small, testable changes
+- **Frequent Commits**: Regular commits with descriptive messages using conventional commit format
+- **GitHub Integration**: Regular pushes for backup and progress tracking
+- **Pull Requests**: Each completed task goes through PR review before merging
+
+### Development Workflow
+```bash
+# Start new task
+git checkout -b feature/task-name
+
+# Make small changes and commit frequently
+git add .
+git commit -m "feat(scope): implement specific feature"
+git push origin feature/task-name
+
+# Create PR when task is complete
+```
+
+## 5. Documentation
 
 The `docs/` directory contains detailed documentation for the project:
 

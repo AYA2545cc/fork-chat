@@ -250,6 +250,33 @@ interface ErrorResponse {
 }
 ```
 
+## Development Process
+
+### Git Workflow
+
+The development follows a feature-branch workflow with small, incremental commits:
+
+1. **Branch Strategy**
+   - Create feature branches for each task (e.g., `feature/database-schema`, `feature/api-endpoints`)
+   - Each task should be completed in a separate branch
+   - Merge to main branch after task completion and testing
+
+2. **Small Step Development**
+   - Break down each task into small, testable increments
+   - Commit frequently with descriptive messages
+   - Each commit should represent a working state
+   - Push changes regularly to GitHub for backup and collaboration
+
+3. **Commit Guidelines**
+   - Use conventional commit format: `type(scope): description`
+   - Examples: `feat(database): add SQLAlchemy models`, `fix(api): handle CORS errors`
+   - Include task reference in commit messages when applicable
+
+4. **Pull Request Process**
+   - Create pull requests for each completed task
+   - Include task completion checklist in PR description
+   - Review and test before merging to main branch
+
 ## Testing Strategy
 
 ### Frontend Testing

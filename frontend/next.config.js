@@ -7,6 +7,9 @@ const nextConfig = {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL,
   },
+  eslint: {
+    dirs: ['src', 'pages', 'components', 'lib', 'utils'],
+  },
 }
 
 module.exports = nextConfig

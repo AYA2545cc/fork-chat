@@ -24,7 +24,7 @@ The entire application is containerized using Docker Compose, simplifying the se
 
 *   **Build and Start**: Run the following command from the project root. The `-d` flag runs the containers in detached mode.
     ```bash
-    docker-compose up --build -d
+    docker compose up --build -d
     ```
 *   **Access**: 
     *   Frontend: `http://localhost:3000`
@@ -32,9 +32,9 @@ The entire application is containerized using Docker Compose, simplifying the se
 
 ### 1.4. Common Docker Commands
 
-*   **Stop Containers**: `docker-compose down`
-*   **View Logs**: `docker-compose logs -f [service_name]` (e.g., `backend`, `frontend`)
-*   **Access a Service Shell**: `docker-compose exec [service_name] bash`
+*   **Stop Containers**: `docker compose down`
+*   **View Logs**: `docker compose logs -f [service_name]` (e.g., `backend`, `frontend`)
+*   **Access a Service Shell**: `docker compose exec [service_name] bash`
 
 ## 2. Project Structure
 

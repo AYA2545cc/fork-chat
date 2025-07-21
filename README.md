@@ -32,7 +32,7 @@ This application is managed using Docker Compose. To run it on your local machin
 3.  **Running the Application**:
     *   Execute the following command in the project root directory:
         ```bash
-        docker-compose up -d --build
+        docker compose up -d --build
         ```
 
 4.  **Accessing the Application**:
@@ -41,7 +41,7 @@ This application is managed using Docker Compose. To run it on your local machin
 5.  **Stopping the Application**:
     *   To stop the application, run:
         ```bash
-        docker-compose down
+        docker compose down
         ```
 
 ## 4. Development Process

@@ -20,10 +20,13 @@ This application is managed using Docker Compose. To run it on your local machin
     *   A Google Gemini API key is required.
 
 2.  **Configuration**:
-    *   Create a `.env` file in the root of the project.
+    *   Copy the example environment file:
+        ```bash
+        cp .env.example .env
+        ```
     *   Add your Gemini API key to the `.env` file:
         ```
-        GOOGLE_API_KEY="YOUR_API_KEY_HERE"
+        GEMINI_API_KEY="YOUR_API_KEY_HERE"
         ```
 
 3.  **Running the Application**:
